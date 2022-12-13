@@ -1,0 +1,10 @@
+{
+    "name": "ciber/web-login",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Ciber\\WebLogin\\": "src/"
+        }
+    },
+    "require": {}
+}
