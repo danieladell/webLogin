@@ -6,9 +6,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         header('Location: ../registerIndex.php');
 
     }else {
-        $n_usuario = $_POST['nombre'];
-        $email = $_POST['email'];
-        $pass = $_POST['pass'];
+        $n_usuario = htmlspecialchars($_POST['nombre']);
+        $email = htmlspecialchars($_POST['email']);
+        $pass = htmlspecialchars($_POST['pass']);
         $cn = null;
 
         if(register($n_usuario, $pass, $email)) {
@@ -23,9 +23,9 @@ function register($nombre, $pass, $email) {
     $cn = mysqli_connect('localhost','root','');
     mysqli_select_db($cn, 'webLogin');
 
-    $password = password_hash($_pass, PASSWORD_DEFAULT);
+    //$password = password_hash($_pass, PASSWORD_DEFAULT);
 
-    $consulta = "INSERT INTO users (names, email, roles, pass) VALUES ('$nombre', '$email', '0', '$password')";
+    $consulta = "INSERT INTO users (names, email, roles, pass) VALUES ('$nombre', '$email', '0', '$pass')";
 
     if (mysqli_query($cn, $consulta)) {
         echo "Te has registrado correctamente.";
